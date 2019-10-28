@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ICard {
-  id:  string,
   title: string,
   content: string
 }

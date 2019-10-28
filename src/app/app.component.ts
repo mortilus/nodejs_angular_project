@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MainService } from './main.service';
 
 export interface ICard {
-  id:  string,
   title: string,
   content: string
 }
@@ -22,7 +21,6 @@ export class AppComponent {
         this.cardList = res;
       });
     this._mainService.postTest({
-      id: '1',
       title: 'title from post',
       content: 'content test'
     })
