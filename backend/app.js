@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// const mongoose = require('mongoose');
 
 const app = express();
 app.use(bodyParser.json());
@@ -47,3 +48,6 @@ app.use('/api/posts', (req, res, next) => {
 });
 
 module.exports = app;
+
+
+//a1yc3Crf4PMfxuPv
