@@ -6,7 +6,7 @@ const Post = require('./models/post');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://mike:a1yc3Crf4PMfxuPv@cluster0-cn4gj.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://mike:WTF3wfX1OHxcYZd6@cluster0-cn4gj.mongodb.net/node-angular?retryWrites=true&w=majority")
     .then(() => {
         console.log("Connected to the database");
     })
@@ -41,28 +41,14 @@ app.post('/api/posts', (req, res, next) => {
     });
 });
 
-app.use('/api/posts', (req, res, next) => {
-    const posts = [
-        {
-            id: 'dasfadsf',
-            title: 'Test title 1',
-            content: 'Test content'
-        },
-        {
-            id: 'dasfadsf',
-            title: 'Test title 2',
-            content: 'Test content'
-        },
-        {
-            id: 'dasfadsf',
-            title: 'Test title 3',
-            content: 'Test content'
-        },
-    ];
-    res.status(200).json(posts);
+app.get('/api/posts', (req, res, next) => {
+    Post.find()
+        .then(documents => {
+            res.status(200).json(documents);
+            console.log(documents);
+        });
 });
 
 module.exports = app;
 
-
-//a1yc3Crf4PMfxuPv
+//WTF3wfX1OHxcYZd6

@@ -1,7 +1,23 @@
 <div>
   <h1>starter project MEAN stack</h1>
-  <h2>Cards</h2>
-  <ul *ngFor="let item of cardList">
-    <li>{{ item.title }}</li>
-  </ul>
+  <div>
+    <h2>Add a card</h2>
+    <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+      <input type="text" placeholder="Title" formControlName="title">
+      <input type="text" placeholder="Content" formControlName="content">
+      <button type="submit">ADD</button>
+    </form>
+  </div>
+  <div>
+    <h2>Cards</h2>
+    <div *ngIf="cardList.length != 0; else loading">
+      <ul *ngFor="let item of cardList">
+        <li>TITLE: {{ item.title }} CONTENT: {{ item.content }}</li>
+      </ul>
+    </div>
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>
+    
+  </div>
 </div>
