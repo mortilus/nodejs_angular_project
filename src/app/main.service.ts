@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ICard {
   title: string,
-  content: string
+  content: string,
+  _id: string
 }
 
 @Injectable({
@@ -15,10 +16,13 @@ export class MainService {
 
   constructor(private _http: HttpClient) { }
 
-  public getTest() {
+  public getPosts() {
     return this._http.get<ICard[]>(`${this._mainUrl}/api/posts`);
   }
-  public postTest(data: ICard) {
+  public postPost(data: ICard) {
     return this._http.post(`${this._mainUrl}/api/posts`, data);
+  }
+  public deletePost(idItem: string) {
+    return this._http.delete(`${this._mainUrl}/api/posts/${idItem}`);
   }
 }

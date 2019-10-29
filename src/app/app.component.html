@@ -12,7 +12,7 @@
     <h2>Cards</h2>
     <div *ngIf="cardList.length != 0; else loading">
       <ul *ngFor="let item of cardList">
-        <li>TITLE: {{ item.title }} CONTENT: {{ item.content }}</li>
+        <li>TITLE: {{ item.title }} CONTENT: {{ item.content }}</li><button (click)="deletePost(item._id)">DELETE</button>
       </ul>
     </div>
     <ng-template #loading>

@@ -5,7 +5,8 @@ import { stringify } from '@angular/compiler/src/util';
 
 export interface ICard {
   title: string,
-  content: string
+  content: string,
+  _id: string
 }
 
 @Component({
@@ -29,8 +30,9 @@ export class AppComponent {
       title: ['', Validators.required],
       content: ['', Validators.required]
     });
-    this._mainService.getTest()
+    this._mainService.getPosts()
       .subscribe(res => {
+        res.map(item => console.log("ID: " + item._id));
         this.cardList = res;
       });
   }
@@ -38,12 +40,20 @@ export class AppComponent {
   onAddPost() {
     const newCard: ICard = {
       title: this.postForm.get('title').value,
-      content: this.postForm.get('content').value
+      content: this.postForm.get('content').value,
+      _id: 'afsgjfsdknsd9384'
     };
-    this._mainService.postTest(newCard)
+    this._mainService.postPost(newCard)
       .subscribe(res => {
         this._initStatus();
         console.log("Res: " + JSON.stringify(res));
+      });
+  }
+  deletePost(postId: string) {
+    this._mainService.deletePost(postId)
+      .subscribe(res => {
+        console.log("Deleted!");
+        this._initStatus();
       });
   }
 }
