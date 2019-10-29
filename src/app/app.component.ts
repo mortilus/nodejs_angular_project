@@ -32,7 +32,6 @@ export class AppComponent {
     });
     this._mainService.getPosts()
       .subscribe(res => {
-        res.map(item => console.log("ID: " + item._id));
         this.cardList = res;
       });
   }
@@ -41,12 +40,12 @@ export class AppComponent {
     const newCard: ICard = {
       title: this.postForm.get('title').value,
       content: this.postForm.get('content').value,
-      _id: 'afsgjfsdknsd9384'
+      _id: null
     };
     this._mainService.postPost(newCard)
       .subscribe(res => {
         this._initStatus();
-        console.log("Res: " + JSON.stringify(res));
+        console.log("Assigned id for new Post: " + res.postId);
       });
   }
   deletePost(postId: string) {

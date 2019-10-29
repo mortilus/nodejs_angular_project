@@ -20,7 +20,7 @@ export class MainService {
     return this._http.get<ICard[]>(`${this._mainUrl}/api/posts`);
   }
   public postPost(data: ICard) {
-    return this._http.post(`${this._mainUrl}/api/posts`, data);
+    return this._http.post<{ message: string, postId: string }>(`${this._mainUrl}/api/posts`, data);
   }
   public deletePost(idItem: string) {
     return this._http.delete(`${this._mainUrl}/api/posts/${idItem}`);
