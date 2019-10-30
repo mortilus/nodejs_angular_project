@@ -25,4 +25,7 @@ export class MainService {
   public deletePost(idItem: string) {
     return this._http.delete(`${this._mainUrl}/api/posts/${idItem}`);
   }
+  public getPostById(postId: string) {
+    
+  }
 }
