@@ -26,6 +26,6 @@ export class MainService {
     return this._http.delete(`${this._mainUrl}/api/posts/${idItem}`);
   }
   public getPostById(postId: string) {
-    
+    return this._http.get<ICard>(`${this._mainUrl}/api/posts/${postId}`);
   }
 }
