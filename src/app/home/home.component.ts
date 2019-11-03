@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 export interface ICard {
+  id: string,
   title: string,
-  content: string,
-  _id: string
+  content: string
 }
 
 @Component({
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   title = 'startProject';
   public cardList: ICard[] = [];
   public postForm: FormGroup;
-  
+
   constructor(private _mainService: MainService, private _formBuilder: FormBuilder,
     private _router: Router) {
     this._initStatus();
@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit {
 
   onAddPost() {
     const newCard: ICard = {
+      id: null,
       title: this.postForm.get('title').value,
-      content: this.postForm.get('content').value,
-      _id: null
+      content: this.postForm.get('content').value
     };
     this._mainService.postPost(newCard)
       .subscribe(res => {

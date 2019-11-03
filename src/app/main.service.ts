@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export interface ICard {
+  id: string,
   title: string,
-  content: string,
-  _id: string
+  content: string
 }
 
 @Injectable({
@@ -27,5 +26,8 @@ export class MainService {
   }
   public getPostById(postId: string) {
     return this._http.get<ICard>(`${this._mainUrl}/api/posts/${postId}`);
+  }
+  public editPostById(editedPost: ICard) {
+    return this._http.put<{ message: string }>(`${this._mainUrl}/api/posts/${editedPost.id}`, editedPost);
   }
 }

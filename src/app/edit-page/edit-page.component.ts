@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MainService } from '../main.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ICard } from '../home/home.component';
 
 @Component({
   selector: 'app-edit-page',
@@ -35,6 +36,13 @@ export class EditPageComponent implements OnInit {
   }
 
   public saveChanges() {
+    const editedPost: ICard = {
+      id: this.postId,
+      title: this.editPostForm.get('titleForm').value,
+      content: this.editPostForm.get('contentForm').value
+    }
+    this._mainService.editPostById(editedPost)
+      .subscribe(res => console.log("Message: " + res.message));
     console.log("Saving changes for: " + this.editPostForm.get('titleForm').value);
   }
 }
