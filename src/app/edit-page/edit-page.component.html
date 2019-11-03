@@ -1,0 +1,8 @@
+<div class="editPostContainer">
+    <button [routerLink]="['/']">BACK</button>
+    <form [formGroup]="editPostForm" (ngSubmit)="saveChanges()">
+        <input type="text" placeholder="title" formControlName="titleForm">
+        <input type="text" placeholder="content" formControlName="contentForm">
+        <button type="submit">SAVE</button>
+    </form>
+</div>

@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { MainService } from './main.service';
-
-export interface ICard {
-  id:  string,
-  title: string,
-  content: string
-}
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { stringify } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,19 +10,6 @@ export interface ICard {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'startProject';
-  public cardList: ICard[] = [];
 
-  constructor(private _mainService: MainService) {
-    this._mainService.getTest()
-      .subscribe(res => {
-        this.cardList = res;
-      });
-    this._mainService.postTest({
-      id: '1',
-      title: 'title from post',
-      content: 'content test'
-    })
-      .subscribe(res => console.log("Res: " + JSON.stringify(res)));
-  }
+  
 }
