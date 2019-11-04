@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MainService } from '../main.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ICard } from '../home/home.component';
@@ -13,7 +13,7 @@ export class EditPageComponent implements OnInit {
   private postId: string;
   public editPostForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private _mainService: MainService, private _formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private _mainService: MainService, private _formBuilder: FormBuilder, private _router: Router) {
     this.editPostForm = this._formBuilder.group({
       titleForm: [''],
       contentForm: ['']
@@ -30,7 +30,7 @@ export class EditPageComponent implements OnInit {
             titleForm: [res.title],
             contentForm: [res.content]
           });
-        }); //...
+        });
       }
     });
   }
@@ -42,7 +42,10 @@ export class EditPageComponent implements OnInit {
       content: this.editPostForm.get('contentForm').value
     }
     this._mainService.editPostById(editedPost)
-      .subscribe(res => console.log("Message: " + res.message));
+      .subscribe(res => {
+        console.log("Message: " + res.message);
+        this._router.navigate(["/"]);
+      });
     console.log("Saving changes for: " + this.editPostForm.get('titleForm').value);
   }
 }
