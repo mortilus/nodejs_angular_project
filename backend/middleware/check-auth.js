@@ -12,6 +12,3 @@ module.exports = (req, res, next) => { //middleware in node express
         })
     }
 }
-
-
-//authorization
