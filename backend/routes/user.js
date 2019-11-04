@@ -1,9 +1,9 @@
 const express = require("express");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
-
 const User = require('../models/user');
 
 router.post("/signup", (req, res, next) => {
@@ -48,7 +48,7 @@ router.post("/login", (req, res, next) => {
             const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id }, 'my_secret', { expiresIn: '1h' });
             res.status(201).json({
                 message: 'Login successfull',
-                result: token
+                token: token
             });
         })
         .catch(err => {

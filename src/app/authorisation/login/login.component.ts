@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this._authService.login(loggedUser)
-      .subscribe(res => console.log("res: " + JSON.stringify(res.result)));
-    console.log("Logging --> " + this.loginForm.get('email').value + " with " + this.loginForm.get('password').value);
+      .subscribe(res => { this._authService.setToken(res.token); console.log("Response: " + res.message) });
   }
 
 }
