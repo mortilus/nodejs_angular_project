@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const User = require('../models/user');
+const checkAuth = require('../middleware/check-auth');
 
 router.post("/signup", (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
@@ -56,6 +57,11 @@ router.post("/login", (req, res, next) => {
                 message: 'Authorisation failed with some errors!'
             });
         });
+});
+router.get("/verify-token", checkAuth, (req, res, next) => {
+    res.status(201).json({
+        message: 'Valid token!'
+    });
 });
 
 module.exports = router;

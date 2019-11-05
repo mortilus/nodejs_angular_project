@@ -19,13 +19,22 @@ export class AuthService {
     return this.__http.post<{ message: string, result: { _id: string, email: string, password: string } }>(`${this._mainUrl}/api/user/signup`, user);
   }
   login(user: IUser) {
-    return this.__http.post<{ message: string, token: { _id: string, email: string, password: string } }>(`${this._mainUrl}/api/user/login`, user);
+    return this.__http.post<{ message: string, token: string }>(`${this._mainUrl}/api/user/login`, user);
+  }
+  logout() {
+    localStorage.setItem('access_token', null);
   }
 
-  getToken() {
-    return this._currentToken;
-  };
-  setToken(token: any) {
-    this._currentToken = token;
+  // getToken() {
+  //   return this._currentToken;
+  // };
+  // setToken(token: any) {
+  //   this._currentToken = token;
+  // }
+
+  isAuthenticated(): boolean {
+    if(localStorage.getItem('access_token') != 'null') {
+      return true;
+    } else { return false; }
   }
 }

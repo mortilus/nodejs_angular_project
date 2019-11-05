@@ -1,10 +1,8 @@
 <div class="card">
-    <div class="row">
-        <button style="width: 100%;" [routerLink]="['/']">HOME</button>
-    </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <input type="text" placeholder="email" formControlName="email">
         <input type="password" placeholder="password" formControlName="password">
         <button type="submit">LOGIN</button>
     </form>
+    <p>Don´t have an account? <a [routerLink]="['/register']">register!</a></p>
 </div>

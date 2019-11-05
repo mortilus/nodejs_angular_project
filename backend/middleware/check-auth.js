@@ -8,7 +8,7 @@ module.exports = (req, res, next) => { //middleware in node express
         next();
     } catch(error) {
         res.status(401).json({
-            message: 'Not able to get the token!'
+            message: 'Not able to get the token or invalid!'
         })
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../authorisation/auth.service';
 
 export interface ICard {
   id: string,
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   public postForm: FormGroup;
 
   constructor(private _mainService: MainService, private _formBuilder: FormBuilder,
-    private _router: Router) {
+    private _router: Router, private _authService: AuthService) {
     this._initStatus();
   }
 
@@ -30,26 +31,9 @@ export class HomeComponent implements OnInit {
 
   private _initStatus() {
     this.cardList = [];
-    this.postForm = this._formBuilder.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required]
-    });
     this._mainService.getPosts()
       .subscribe(res => {
         this.cardList = res;
-      });
-  }
-
-  onAddPost() {
-    const newCard: ICard = {
-      id: null,
-      title: this.postForm.get('title').value,
-      content: this.postForm.get('content').value
-    };
-    this._mainService.postPost(newCard)
-      .subscribe(res => {
-        this._initStatus();
-        console.log("Assigned id for new Post: " + res.postId);
       });
   }
   deletePost(postId: string) {
@@ -61,6 +45,10 @@ export class HomeComponent implements OnInit {
   }
   editPost(postId: string) {
     this._router.navigate(['edit', postId]);
+  }
+  logout() {
+    this._authService.logout();
+    this._router.navigate(['/login']);
   }
 
 }

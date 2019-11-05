@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private _authService: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const authToken = this._authService.getToken();
+        const authToken = localStorage.getItem('access_token');
         console.log("POROC " + authToken);
         if (authToken) {
             const authRequest = req.clone({

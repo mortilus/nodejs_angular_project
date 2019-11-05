@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './authorisation/register/register.component';
 import { LoginComponent } from './authorisation/login/login.component';
 import { AuthInterceptor } from './authorisation/auth-interceptor';
+import { NewPostComponent } from './home/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthInterceptor } from './authorisation/auth-interceptor';
     EditPageComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
