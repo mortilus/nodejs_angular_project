@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private _builder: FormBuilder,
@@ -19,6 +19,12 @@ export class LoginComponent {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    if (this._authService.isAuthenticated()) {
+      this._router.navigate(['/']);
+    }
   }
 
   login() {

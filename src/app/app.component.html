@@ -1,4 +1,4 @@
-<p>
+<p *ngIf="authenticated()">
   <a [routerLink]="['/home']">Posts</a>
   <a [routerLink]="['/newpost']">New Post</a>
 </p>

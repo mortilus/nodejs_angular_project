@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { MainService } from './main.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { stringify } from '@angular/compiler/src/util';
-import { Router } from '@angular/router';
+import { AuthService } from './authorisation/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private _authService: AuthService) { }
 
-  
+  authenticated(): boolean {
+    return this._authService.isAuthenticated();
+  }
 }

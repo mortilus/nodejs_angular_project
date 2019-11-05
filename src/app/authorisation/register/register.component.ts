@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 export interface IUser {
   email: string,
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(private _builder: FormBuilder,
-    private _authService: AuthService) {
+    private _authService: AuthService,
+    private _router: Router) {
     this.registerForm = this._builder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,6 +26,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this._authService.isAuthenticated()) {
+      this._router.navigate(['/']);
+    }
   }
 
   registerUser() {
