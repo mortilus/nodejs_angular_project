@@ -6,8 +6,9 @@ const app = express();
 app.disable("x-powered-by");
 
 const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 
-mongoose.connect("mongodb+srv://mike:WTF3wfX1OHxcYZd6@cluster0-cn4gj.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://mike:WTF3wfX1OHxcYZd6@cluster0-cn4gj.mongodb.net/node-angular")
     .then(() => {
         console.log("Connected to the database");
     })
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-TypeError, Accept, Content-Type"
+        "Origin, X-Requested-With, Content-TypeError, Accept, Content-Type, Authorisation"
     );
     res.setHeader(
         "Access-Control-Allow-Methods",
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/posts', postsRoutes);
+app.use('/api/user', userRoutes);
 
 
 

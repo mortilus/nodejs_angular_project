@@ -1,0 +1,8 @@
+<div>
+    <h2>Add a card</h2>
+    <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+        <input type="text" placeholder="Title" formControlName="title">
+        <input type="text" placeholder="Content" formControlName="content">
+        <button type="submit">ADD</button>
+    </form>
+</div>
