@@ -7,12 +7,17 @@ const checkAuth = require('../middleware/check-auth');
 router.post('', checkAuth, (req, res, next) => {
     const post = new Post({
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        creator: req.userData.userId
     });
+    // console.log(req.userData);
+    // return res.status(200).json({});
     post.save().then(createPost => {
         res.status(201).json({
             message: 'Post added successfully',
-            postId: createPost._id
+            post: {
+                ...createPost,
+            },
         })
     });
 });
