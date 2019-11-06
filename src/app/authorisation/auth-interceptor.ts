@@ -8,7 +8,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authToken = localStorage.getItem('access_token');
-        console.log("POROC " + authToken);
         if (authToken) {
             const authRequest = req.clone({
                 setHeaders: {

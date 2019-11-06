@@ -1,8 +1,13 @@
 <div class="card editPostContainer">
-    <button [routerLink]="['/']">BACK</button>
     <form [formGroup]="editPostForm" (ngSubmit)="saveChanges()">
-        <input type="text" placeholder="title" formControlName="titleForm">
-        <input type="text" placeholder="content" formControlName="contentForm">
-        <button type="submit">SAVE</button>
+        <div class="form-group">
+            <label for="titleForm">Title</label>
+            <input type="text" formControlName="titleForm" class="form-control" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+            <label for="contentForm">Content</label>
+            <input type="text" formControlName="contentForm" class="form-control" placeholder="Enter content">
+        </div>
+        <button class="btn btn-outline-success" type="submit">SAVE</button>
     </form>
 </div>

@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     };
     this._authService.register(newUser)
       .subscribe(res => {
+        this._router.navigate(['/login']);
         console.log(res.message + " ID: " + res.result._id);
       });
     console.log("Registering --> " + this.registerForm.get('email').value + " with " + this.registerForm.get('password').value);

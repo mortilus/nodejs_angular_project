@@ -1,13 +1,21 @@
 <div style="padding: 20px;">
-    <div class="row" style="margin-bottom: 20px;">
-        <button (click)="logout()">LOG OUT</button>
-    </div>
     <div>
-        <h2>Posts</h2>
+        <h2 class="text-center">Posts</h2>
         <div *ngIf="cardList.length != 0; else loading">
-            <ul *ngFor="let item of cardList">
-                <li>TITLE: {{ item.title }} CONTENT: {{ item.content }}</li><button
-                    (click)="deletePost(item._id)">DELETE</button><button (click)="editPost(item._id)">EDIT</button>
+            <ul class="list-group" *ngFor="let item of cardList">
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ item.title }}</h5>
+                        </div>
+                        <p class="mb-1">{{ item.content }}</p>
+                    </span>
+                    <div>
+                        <button class="btn btn-outline-danger" style="margin-right: 5px;"
+                            (click)="deletePost(item._id)">DELETE</button>
+                        <button class="btn btn-outline-primary" (click)="editPost(item._id)">EDIT</button>
+                    </div>
+                </li>
             </ul>
         </div>
         <ng-template #loading>

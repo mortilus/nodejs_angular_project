@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this._authService.login(loggedUser)
-      .subscribe(res => { localStorage.setItem('access_token', res.token); alert("Response: " + res.message); this._router.navigate(['/home']); }, err => alert("Login failed!"));
+      .subscribe(res => {
+        localStorage.setItem('access_token', res.token);
+        this._authService.authenticated.next({ authenticated: true, email: res.email });
+        alert("Response: " + res.message); this._router.navigate(['/home']);
+      }, err => alert("Login failed!"));
   }
 
 }

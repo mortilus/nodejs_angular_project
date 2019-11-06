@@ -46,9 +46,4 @@ export class HomeComponent implements OnInit {
   editPost(postId: string) {
     this._router.navigate(['edit', postId]);
   }
-  logout() {
-    this._authService.logout();
-    this._router.navigate(['/login']);
-  }
-
 }
