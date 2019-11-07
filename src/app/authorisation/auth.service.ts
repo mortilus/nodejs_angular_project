@@ -12,8 +12,9 @@ export interface IUser {
 })
 export class AuthService {
   private _mainUrl: string = "http://localhost:3000";
+  private _userIdLoggedUser: string = "";
 
-  public authenticated = new BehaviorSubject<{ authenticated: boolean, email: any }>({ authenticated: false, email: '' });
+  public authenticated = new BehaviorSubject<{ authenticated: boolean, email: string, userId: string }>({ authenticated: false, email: '', userId: '' });
   authenticated$ = this.authenticated.asObservable();
 
   constructor(private __http: HttpClient) { }
@@ -22,15 +23,30 @@ export class AuthService {
     return this.__http.post<{ message: string, result: { _id: string, email: string, password: string } }>(`${this._mainUrl}/api/user/signup`, user);
   }
   login(user: IUser) {
-    return this.__http.post<{ message: string, token: string, email: string }>(`${this._mainUrl}/api/user/login`, user);
+    return this.__http.post<{ message: string, token: string, email: string, userId: string }>(`${this._mainUrl}/api/user/login`, user);
   }
   logout() {
-    this.authenticated.next({ authenticated: false, email: '' });
-    localStorage.setItem('access_token', null);
+    this.authenticated.next({ authenticated: false, email: '', userId: '' });
+    this.removeAuthDataLS();
   }
   isAuthenticated(): boolean {
-    if(localStorage.getItem('access_token') != 'null') {
+    if (localStorage.getItem('access_token') != 'null') {
       return true;
     } else { return false; }
+  }
+  getUserId() {
+    return this._userIdLoggedUser;
+  }
+  setUserId(userid: string) {
+    this._userIdLoggedUser = userid;
+  }
+
+  setAuthDataLS(token: string, userid: string) {
+    localStorage.setItem('access_token', token);
+    localStorage.setItem('user_id', userid);
+  }
+  removeAuthDataLS() {
+    localStorage.setItem('access_token', null);
+    localStorage.setItem('user_id', null);
   }
 }

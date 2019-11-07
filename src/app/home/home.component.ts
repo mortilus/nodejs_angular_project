@@ -7,7 +7,8 @@ import { AuthService } from '../authorisation/auth.service';
 export interface ICard {
   id: string,
   title: string,
-  content: string
+  content: string,
+  creator: string
 }
 
 @Component({
@@ -16,18 +17,19 @@ export interface ICard {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = 'startProject';
   public cardList: ICard[] = [];
   public postForm: FormGroup;
+  public loggedUserId: string = ''; 
 
   constructor(private _mainService: MainService, private _formBuilder: FormBuilder,
     private _router: Router, private _authService: AuthService) {
-    this._initStatus();
   }
 
   ngOnInit() {
+    this.loggedUserId = localStorage.getItem('user_id');
+    console.log("loff "+ this.loggedUserId);
+    this._initStatus();
   }
-
 
   private _initStatus() {
     this.cardList = [];

@@ -16,10 +16,15 @@ export class MainService {
   constructor(private _http: HttpClient) { }
 
   public getPosts() {
-    return this._http.get<ICard[]>(`${this._mainUrl}/api/posts`);
+    return this._http.get<{
+      id: string,
+      title: string,
+      content: string,
+      creator: string
+    }[]>(`${this._mainUrl}/api/posts`);
   }
   public postPost(data: ICard) {
-    return this._http.post<{ message: string, postId: string }>(`${this._mainUrl}/api/posts`, data);
+    return this._http.post<{ message: string, post: { title: string, content: string, id: string, creator: string } }>(`${this._mainUrl}/api/posts`, data);
   }
   public deletePost(idItem: string) {
     return this._http.delete(`${this._mainUrl}/api/posts/${idItem}`);

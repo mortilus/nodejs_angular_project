@@ -13,6 +13,7 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
+            <!-- <span *ngIf="loggedIn" style="margin-right: 10px;">Logged in as: {{ currentUserEmail }}</span> -->
             <button *ngIf="loggedIn; else notLoggedin" class="btn btn-outline-secondary my-2 my-sm-0"
                 (click)="logout()">Logout</button>
             <ng-template #notLoggedin>

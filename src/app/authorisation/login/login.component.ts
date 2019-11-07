@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
     };
     this._authService.login(loggedUser)
       .subscribe(res => {
-        localStorage.setItem('access_token', res.token);
-        this._authService.authenticated.next({ authenticated: true, email: res.email });
+        this._authService.setAuthDataLS(res.token, res.userId);
+        this._authService.setUserId(res.userId);
+        this._authService.authenticated.next({ authenticated: true, email: res.email, userId: res.userId });
         alert("Response: " + res.message); this._router.navigate(['/home']);
       }, err => alert("Login failed!"));
   }
