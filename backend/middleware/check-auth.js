@@ -5,7 +5,7 @@ module.exports = (req, res, next) => { //middleware in node express
         const token = req.headers.authorisation;
         console.log("Passed token " + token);
         const decodedToken = jwt.verify(token, 'my_secret');
-        req.userData = { email: decodedToken.email, userId: decodedToken.userId };
+        req.userData = { email: decodedToken.email, userId: decodedToken.userId }; //UserData was added to the request!
         next();
     } catch(error) {
         res.status(401).json({

@@ -1,0 +1,62 @@
+{
+    "strictMode": true,
+    "inserting": true,
+    "getters": {},
+    "_id": "5dc480ca8358e38f822eb694",
+    "wasPopulated": false,
+    "activePaths": {
+        "paths": {
+            "creator": "require",
+            "content": "require",
+            "title": "require"
+        },
+        "states": {
+            "ignore": {},
+            "default": {},
+            "init": {},
+            "modify": {},
+            "require": {
+                "creator": true,
+                "content": true,
+                "title": true
+            }
+        },
+        "stateNames": [
+            "require",
+            "modify",
+            "init",
+            "default",
+            "ignore"
+        ]
+    },
+    "pathsToScopes": {},
+    "cachedRequired": {},
+    "session": null,
+    "$setCalled": {},
+    "emitter": {
+        "_events": {},
+        "_eventsCount": 0,
+        "_maxListeners": 0
+    },
+    "$options": {},
+    "$versionError": {
+        "message": "No matching document found for id \"5dc480ca8358e38f822eb694\" version 0 modifiedPaths \"title, content, creator\"",
+        "name": "VersionError",
+        "version": 0,
+        "modifiedPaths": [
+            "title",
+            "content",
+            "creator"
+        ]
+    }
+},
+"isNew": false,
+"_doc": {
+    "_id": "5dc480ca8358e38f822eb694",
+    "title": "test title",
+    "content": "test content michele",
+    "creator": "5dc09337fed3ee719f4320b8",
+    "__v": 0
+},
+"$locals": {}
+}

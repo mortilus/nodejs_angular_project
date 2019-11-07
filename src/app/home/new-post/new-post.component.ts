@@ -30,7 +30,7 @@ export class NewPostComponent implements OnInit {
     this._mainService.postPost(newCard)
       .subscribe(res => {
         this._router.navigate(['/']);
-        console.log("Assigned id for new Post: " + JSON.stringify(res.post));
+        console.log("Assigned id for new Post: " + res.post.creator);
       });
   }
 }

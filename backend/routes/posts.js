@@ -16,7 +16,10 @@ router.post('', checkAuth, (req, res, next) => {
         res.status(201).json({
             message: 'Post added successfully',
             post: {
-                ...createPost,
+                title: createPost.title,
+                content: createPost.content,
+                id: createPost.id,
+                creator: createPost.creator
             },
         })
     });
