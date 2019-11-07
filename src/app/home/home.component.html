@@ -10,7 +10,7 @@
                         </div>
                         <p class="mb-1">{{ item.content }}</p>
                     </span>
-                    <div>
+                    <div *ngIf="item.creator === loggedUserId">
                         <button class="btn btn-outline-danger" style="margin-right: 5px;"
                             (click)="deletePost(item._id)">DELETE</button>
                         <button class="btn btn-outline-primary" (click)="editPost(item._id)">EDIT</button>

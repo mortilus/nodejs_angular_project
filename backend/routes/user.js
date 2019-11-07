@@ -50,6 +50,7 @@ router.post("/login", (req, res, next) => {
             res.status(201).json({
                 message: 'Login successfull',
                 email: fetchedUser.email,
+                userId: fetchedUser._id,
                 token: token
             });
         })
